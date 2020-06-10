@@ -1,0 +1,31 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+     href="{% static 'weight/css/style.css'%}">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+    <h2>{{msg}}</h2>
+    <table>
+      <tr>
+        <th>ID</th><td>{{obj.id}}</td>
+      </tr>
+      <tr>
+        <th>Weight</th><td>{{obj.weight}}</td>
+      </tr>
+      <tr>
+        <th>Date</th><td>{{obj.date}}</td>
+      </tr>
+      <form action="{% url 'delete' id%}" method="post">
+        {% csrf_token %}
+        <tr>
+          <td><input type="submit" name="" value="削除"></td>
+        </tr>
+      </form>
+    </table>
+  </body>
+</html>

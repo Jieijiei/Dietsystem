@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+     href="{% static 'weigth/css/style.css'%}">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+    <form action="{% url 'create' %}" method="post">
+      {% csrf_token%}
+      {{ form.as_table}}
+      <tr>
+        <td></td><td><input type="submit" name="" value="send"></td>
+      </tr>
+    </form>
+    <a href="{% url 'index'%}">indexへ戻る</a>
+  </body>
+</html>

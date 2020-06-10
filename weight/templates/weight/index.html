@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+     href="{% static 'weight/css/style.css'%}">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>経過日</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>BMI</th>
+        <th>肥満度</th>
+        <th>date</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
+      {% for item in data %}
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.weight}}</td>
+        <td>{{item.height}}</td>
+        <td>{{item.bmi}}</td>
+        <td>{{item.himando}}</td>
+        <td>{{item.date}}</td>
+        <td><a href="{% url 'edit' item.id %}">edit</a></td>
+        <td><a href="{% url 'delete' item.id %}">delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="{% url 'create'%}">体重、身長を記録する</a>
+  </body>
+</html>
