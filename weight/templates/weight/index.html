@@ -1,4 +1,5 @@
 {% load static %}
+{% load utils %}
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
   <head>
@@ -24,8 +25,18 @@
         <td>{{item.id}}</td>
         <td>{{item.weight}}</td>
         <td>{{item.height}}</td>
-        <td>{{item.bmi}}</td>
-        <td>{{item.himando}}</td>
+        {% with item.weight|bmicalculation:item.height as bmi_check %}
+        <td>{{bmi_check}}</td>
+        {% if bmi_check < 18.5 %}
+            <td>痩せ型</td>
+        {% elif bmi_check >= 18.5 and bmi_check < 25 %}
+            <td>標準体型</td>
+        {% elif bmi_check >= 25 and bmi_check < 30 %}
+            <td>肥満(軽)</td>
+        {% else %}
+            <td>肥満(重)</td>
+        {% endif %}
+        {% endwith %}
         <td>{{item.date}}</td>
         <td><a href="{% url 'edit' item.id %}">edit</a></td>
         <td><a href="{% url 'delete' item.id %}">delete</a></td>

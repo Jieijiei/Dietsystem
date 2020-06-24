@@ -23,8 +23,6 @@ def create(request):
         height = WeightForm(request.POST, instance=obj)
         weight.save()
         height.save()
-        bmi = int(request.POST['weight']) / (int(request.POST['height'])/100 )**2
-        bmi.save()
         return redirect(to='/weight')
     return render(request, 'weight/create.html', params)
 
